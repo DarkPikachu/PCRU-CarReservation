@@ -24,7 +24,7 @@ Route::group(['middleware' => 'auth:api'], function(){
     Route::post('user/details', 'API\UserController@details');
     
     Route::apiResource('dashboard', 'DashboardController');
-    Route::apiResource('task', 'TaskController');
+    //Route::apiResource('task', 'TaskController');
     Route::apiResource('report', 'ReportController');
     Route::apiResource('manageitem', 'ManageItemController');
 

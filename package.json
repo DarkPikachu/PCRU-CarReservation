@@ -10,6 +10,7 @@
         "dev": "webpack"
     },
     "dependencies": {
+        "quasar-calendar": "^0.3.0",
         "vue": "^2.5.3"
     }
 }
