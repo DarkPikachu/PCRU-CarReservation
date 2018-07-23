@@ -1,14 +1,18 @@
 const path = require('path')
+const { VueLoaderPlugin } = require('vue-loader')
 
 module.exports = {
-    entry: path.resolve('resources', 'assets', 'vue', 'entry.js'),
-    output : {
-        filename: 'bundle.js',
-        path: path.resolve('public')
+    mode: "development",
+    entry: {
+        app: path.resolve('resources', 'assets', 'vue', 'entry.js'),
+        home: path.resolve('resources', 'assets', 'vue', 'home.js'),
+    },
+    output: {
+        filename: '[name].js',
+        path: path.resolve('public', 'js')
     },
     module: {
-        loaders: [
-            {
+        rules: [{
                 test: /\.vue$/,
                 loader: 'vue-loader',
                 exclude: /(node_modules)/
@@ -16,7 +20,18 @@ module.exports = {
             {
                 test: /\.css$/,
                 loader: 'style-loader!css-loader'
+            },
+            {
+                test: /\.js$/,
+                exclude: /node_modules/,
+                use: [{
+                    loader: 'babel-loader',
+                }]
             }
         ]
-    }
+    },
+    plugins: [
+        // make sure to include the plugin for the magic
+        new VueLoaderPlugin()
+    ]
 }
